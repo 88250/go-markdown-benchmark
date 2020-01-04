@@ -18,15 +18,16 @@ import (
 	"testing"
 
 	"github.com/88250/lute"
-	"gopkg.in/russross/blackfriday.v2"
 	"github.com/yuin/goldmark"
 	"github.com/yuin/goldmark/extension"
 	"github.com/yuin/goldmark/renderer/html"
 	"gitlab.com/golang-commonmark/markdown"
+	"gopkg.in/russross/blackfriday.v2"
 )
 
+const spec = "commonmark-spec"
+
 func BenchmarkLute(b *testing.B) {
-	spec := "commonmark-spec"
 	bytes, err := ioutil.ReadFile(spec + ".md")
 	if nil != err {
 		b.Fatalf("read spec text failed: " + err.Error())
@@ -57,7 +58,6 @@ func BenchmarkLute(b *testing.B) {
 }
 
 func BenchmarkGolangCommonMark(b *testing.B) {
-	spec := "../test/commonmark-spec"
 	bytes, err := ioutil.ReadFile(spec + ".md")
 	if nil != err {
 		b.Fatalf("read spec text failed: " + err.Error())
@@ -73,7 +73,6 @@ func BenchmarkGolangCommonMark(b *testing.B) {
 }
 
 func BenchmarkGoldMark(b *testing.B) {
-	spec := "../test/commonmark-spec"
 	markdown, err := ioutil.ReadFile(spec + ".md")
 	if nil != err {
 		b.Fatalf("read spec text failed: " + err.Error())
@@ -96,7 +95,6 @@ func BenchmarkGoldMark(b *testing.B) {
 }
 
 func BenchmarkBlackFriday(b *testing.B) {
-	spec := "../test/commonmark-spec"
 	markdown, err := ioutil.ReadFile(spec + ".md")
 	if nil != err {
 		b.Fatalf("read spec text failed: " + err.Error())
