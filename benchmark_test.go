@@ -18,6 +18,7 @@ import (
 	"testing"
 
 	"github.com/88250/lute"
+	gm "github.com/gomarkdown/markdown"
 	"github.com/yuin/goldmark"
 	"github.com/yuin/goldmark/extension"
 	"github.com/yuin/goldmark/renderer/html"
@@ -40,6 +41,8 @@ func BenchmarkLute(b *testing.B) {
 	luteEngine.GFMStrikethrough = true
 	luteEngine.SoftBreak2HardBreak = false
 	luteEngine.CodeSyntaxHighlight = false
+	luteEngine.Footnotes = false
+	luteEngine.ToC = false
 	luteEngine.AutoSpace = false
 	luteEngine.FixTermTypo = false
 	luteEngine.ChinesePunct = false
@@ -101,5 +104,15 @@ func BenchmarkBlackFriday(b *testing.B) {
 	}
 	for i := 0; i < b.N; i++ {
 		blackfriday.Run(markdown)
+	}
+}
+
+func BenchmarkGoMarkdown(b *testing.B) {
+	markdown, err := ioutil.ReadFile(spec + ".md")
+	if nil != err {
+		b.Fatalf("read spec text failed: " + err.Error())
+	}
+	for i := 0; i < b.N; i++ {
+		gm.ToHTML(markdown, nil, nil)
 	}
 }

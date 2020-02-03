@@ -10,4 +10,4 @@
 : PURPOSE.
 : See the Mulan PSL v1 for more details.
 
-go test -bench . -test.cpu 2,4,8 -test.benchmem
+go test -bench . -test.benchmem
