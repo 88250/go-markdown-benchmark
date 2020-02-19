@@ -47,21 +47,26 @@ func BenchmarkLute(b *testing.B) {
 	luteEngine.FixTermTypo = false
 	luteEngine.ChinesePunct = false
 	luteEngine.Emoji = false
-	html, err := luteEngine.Markdown("spec text", bytes)
-	if nil != err {
-		b.Fatalf("unexpected: %s", err)
+	ht, er1 := luteEngine.Markdown("spec text", bytes)
+	if nil != er1 {
+		b.Fatalf("unexpected: %s", er1)
 	}
-	if err := ioutil.WriteFile(spec+".html", html, 0644); nil != err {
+	if err := ioutil.WriteFile(spec+".html", ht, 0644); nil != err {
 		b.Fatalf("write spec html failed: %s", err)
 	}
 
-	for i := 0; i < b.N; i++ {
-		luteEngine.Markdown("spec text", bytes)
-	}
+	b.SetParallelism(8)
+	b.ReportAllocs()
+	b.ResetTimer()
+	b.RunParallel(func(pb *testing.PB) {
+		for pb.Next() {
+			luteEngine.Markdown("spec text", bytes)
+		}
+	})
 }
 
 func BenchmarkGolangCommonMark(b *testing.B) {
-	bytes, err := ioutil.ReadFile(spec + ".md")
+	buf, err := ioutil.ReadFile(spec + ".md")
 	if nil != err {
 		b.Fatalf("read spec text failed: " + err.Error())
 	}
@@ -70,18 +75,24 @@ func BenchmarkGolangCommonMark(b *testing.B) {
 		markdown.Tables(true),
 		markdown.Linkify(true),
 		markdown.Typographer(false))
-	for i := 0; i < b.N; i++ {
-		md.RenderToString(bytes)
-	}
+
+	b.SetParallelism(8)
+	b.ReportAllocs()
+	b.ResetTimer()
+	b.RunParallel(func(pb *testing.PB) {
+		for pb.Next() {
+			md.RenderToString(buf)
+		}
+	})
 }
 
 func BenchmarkGoldMark(b *testing.B) {
-	markdown, err := ioutil.ReadFile(spec + ".md")
+	md, err := ioutil.ReadFile(spec + ".md")
 	if nil != err {
 		b.Fatalf("read spec text failed: " + err.Error())
 	}
 
-	goldmarkEngine := goldmark.New(
+	ge := goldmark.New(
 		goldmark.WithRendererOptions(html.WithXHTML()),
 		goldmark.WithExtensions(
 			extension.Table, extension.Strikethrough, extension.TaskList, extension.Linkify,
@@ -89,30 +100,46 @@ func BenchmarkGoldMark(b *testing.B) {
 	)
 
 	var out bytes.Buffer
-	for i := 0; i < b.N; i++ {
-		out.Reset()
-		if err := goldmarkEngine.Convert(markdown, &out); nil != err {
-			panic(err)
+
+	b.SetParallelism(8)
+	b.ReportAllocs()
+	b.ResetTimer()
+	b.RunParallel(func(pb *testing.PB) {
+		for pb.Next() {
+			out.Reset()
+			if err := ge.Convert(md, &out); nil != err {
+				panic(err)
+			}
 		}
-	}
+	})
 }
 
 func BenchmarkBlackFriday(b *testing.B) {
-	markdown, err := ioutil.ReadFile(spec + ".md")
+	md, err := ioutil.ReadFile(spec + ".md")
 	if nil != err {
 		b.Fatalf("read spec text failed: " + err.Error())
 	}
-	for i := 0; i < b.N; i++ {
-		blackfriday.Run(markdown)
-	}
+	b.SetParallelism(8)
+	b.ReportAllocs()
+	b.ResetTimer()
+	b.RunParallel(func(pb *testing.PB) {
+		for pb.Next() {
+			blackfriday.Run(md)
+		}
+	})
 }
 
 func BenchmarkGoMarkdown(b *testing.B) {
-	markdown, err := ioutil.ReadFile(spec + ".md")
+	md, err := ioutil.ReadFile(spec + ".md")
 	if nil != err {
 		b.Fatalf("read spec text failed: " + err.Error())
 	}
-	for i := 0; i < b.N; i++ {
-		gm.ToHTML(markdown, nil, nil)
-	}
+	b.SetParallelism(8)
+	b.ReportAllocs()
+	b.ResetTimer()
+	b.RunParallel(func(pb *testing.PB) {
+		for pb.Next() {
+			gm.ToHTML(md, nil, nil)
+		}
+	})
 }
