@@ -29,7 +29,7 @@ import (
 const spec = "commonmark-spec"
 
 func BenchmarkLute(b *testing.B) {
-	bytes, err := ioutil.ReadFile(spec + ".md")
+	buf, err := ioutil.ReadFile(spec + ".md")
 	if nil != err {
 		b.Fatalf("read spec text failed: " + err.Error())
 	}
@@ -47,20 +47,21 @@ func BenchmarkLute(b *testing.B) {
 	luteEngine.FixTermTypo = false
 	luteEngine.ChinesePunct = false
 	luteEngine.Emoji = false
-	ht, er1 := luteEngine.Markdown("spec text", bytes)
-	if nil != er1 {
-		b.Fatalf("unexpected: %s", er1)
+	luteEngine.ParallelParsing = false
+	output, err := luteEngine.Markdown("spec text", buf)
+	if nil != err {
+		b.Fatalf("unexpected: %s", err)
 	}
-	if err := ioutil.WriteFile(spec+".html", ht, 0644); nil != err {
+	if err := ioutil.WriteFile(spec+".html", output, 0644); nil != err {
 		b.Fatalf("write spec html failed: %s", err)
 	}
 
-	b.SetParallelism(8)
+	b.SetParallelism(12)
 	b.ReportAllocs()
 	b.ResetTimer()
 	b.RunParallel(func(pb *testing.PB) {
 		for pb.Next() {
-			luteEngine.Markdown("spec text", bytes)
+			luteEngine.Markdown("spec text", buf)
 		}
 	})
 }
@@ -76,7 +77,7 @@ func BenchmarkGolangCommonMark(b *testing.B) {
 		markdown.Linkify(true),
 		markdown.Typographer(false))
 
-	b.SetParallelism(8)
+	b.SetParallelism(12)
 	b.ReportAllocs()
 	b.ResetTimer()
 	b.RunParallel(func(pb *testing.PB) {
@@ -101,7 +102,7 @@ func BenchmarkGoldMark(b *testing.B) {
 
 	var out bytes.Buffer
 
-	b.SetParallelism(8)
+	b.SetParallelism(12)
 	b.ReportAllocs()
 	b.ResetTimer()
 	b.RunParallel(func(pb *testing.PB) {
@@ -119,7 +120,8 @@ func BenchmarkBlackFriday(b *testing.B) {
 	if nil != err {
 		b.Fatalf("read spec text failed: " + err.Error())
 	}
-	b.SetParallelism(8)
+
+	b.SetParallelism(12)
 	b.ReportAllocs()
 	b.ResetTimer()
 	b.RunParallel(func(pb *testing.PB) {
@@ -134,7 +136,8 @@ func BenchmarkGoMarkdown(b *testing.B) {
 	if nil != err {
 		b.Fatalf("read spec text failed: " + err.Error())
 	}
-	b.SetParallelism(8)
+
+	b.SetParallelism(12)
 	b.ReportAllocs()
 	b.ResetTimer()
 	b.RunParallel(func(pb *testing.PB) {
