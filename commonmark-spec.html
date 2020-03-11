@@ -1,5 +1,5 @@
-<h1>Introduction</h1>
-<h2>What is Markdown?</h2>
+<h1 id="Introduction">Introduction</h1>
+<h2 id="What-is-Markdown-">What is Markdown?</h2>
 <p>Markdown is a plain text format for writing structured documents,
 based on conventions for indicating formatting in email
 and usenet posts.  It was developed by John Gruber (with
@@ -83,7 +83,7 @@ This paragraph belongs to item two of the outer list.
 to worry about indentation.  But the Markdown version is much easier
 to read.  The nesting of list items is apparent to the eye in the
 source, not just in the processed document.</p>
-<h2>Why is a spec needed?</h2>
+<h2 id="Why-is-a-spec-needed-">Why is a spec needed?</h2>
 <p>John Gruber's <a href="http://daringfireball.net/projects/markdown/syntax">canonical description of Markdown's
 syntax</a>
 does not specify the syntax unambiguously.  Here are some examples of
@@ -220,7 +220,7 @@ a document that renders one way on one system (say, a GitHub wiki)
 renders differently on another (say, converting to docbook using
 pandoc).  To make matters worse, because nothing in Markdown counts
 as a &quot;syntax error,&quot; the divergence often isn't discovered right away.</p>
-<h2>About this document</h2>
+<h2 id="About-this-document">About this document</h2>
 <p>This document attempts to specify Markdown syntax unambiguously.
 It contains many examples with side-by-side Markdown and
 HTML.  These are intended to double as conformance tests.  An
@@ -239,8 +239,8 @@ in Markdown with a small extension for the side-by-side tests.
 The script <code>tools/makespec.py</code> can be used to convert <code>spec.txt</code> into
 HTML or CommonMark (which can then be converted into other formats).</p>
 <p>In the examples, the <code>→</code> character is used to represent tabs.</p>
-<h1>Preliminaries</h1>
-<h2>Characters and lines</h2>
+<h1 id="Preliminaries">Preliminaries</h1>
+<h2 id="Characters-and-lines">Characters and lines</h2>
 <p>Any sequence of [characters] is a valid CommonMark
 document.</p>
 <p>A <a href="@">character</a> is a Unicode code point.  Although some
@@ -282,7 +282,7 @@ is <code>!</code>, <code>&quot;</code>, <code>#</code>, <code>$</code>, <code>%<
 <p>A <a href="@">punctuation character</a> is an [ASCII
 punctuation character] or anything in
 the general Unicode categories  <code>Pc</code>, <code>Pd</code>, <code>Pe</code>, <code>Pf</code>, <code>Pi</code>, <code>Po</code>, or <code>Ps</code>.</p>
-<h2>Tabs</h2>
+<h2 id="Tabs">Tabs</h2>
 <p>Tabs in lines are not expanded to [spaces].  However,
 in contexts where whitespace helps to define block structure,
 tabs behave as if they were replaced by spaces with a tab stop
@@ -389,17 +389,17 @@ bar
 .
 &lt;hr /&gt;
 </code></pre>
-<h2>Insecure characters</h2>
+<h2 id="Insecure-characters">Insecure characters</h2>
 <p>For security reasons, the Unicode character <code>U+0000</code> must be replaced
 with the REPLACEMENT CHARACTER (<code>U+FFFD</code>).</p>
-<h1>Blocks and inlines</h1>
+<h1 id="Blocks-and-inlines">Blocks and inlines</h1>
 <p>We can think of a document as a sequence of
 <a href="@">blocks</a>---structural elements like paragraphs, block
 quotations, lists, headings, rules, and code blocks.  Some blocks (like
 block quotes and list items) contain other blocks; others (like
 headings and paragraphs) contain <a href="@">inline</a> content---text,
 links, emphasized text, images, code spans, and so on.</p>
-<h2>Precedence</h2>
+<h2 id="Precedence">Precedence</h2>
 <p>Indicators of block structure always take precedence over indicators
 of inline structure.  So, for example, the following is a list with
 two items, not a list with one item containing a code span:</p>
@@ -419,15 +419,15 @@ definitions that will be available only at the end of the first
 step.  Note that the first step requires processing lines in sequence,
 but the second can be parallelized, since the inline parsing of
 one block element does not affect the inline parsing of any other.</p>
-<h2>Container blocks and leaf blocks</h2>
+<h2 id="Container-blocks-and-leaf-blocks">Container blocks and leaf blocks</h2>
 <p>We can divide blocks into two types:
 <a href="@">container blocks</a>,
 which can contain other blocks, and <a href="@">leaf blocks</a>,
 which cannot.</p>
-<h1>Leaf blocks</h1>
+<h1 id="Leaf-blocks">Leaf blocks</h1>
 <p>This section describes the different kinds of leaf block that make up a
 Markdown document.</p>
-<h2>Thematic breaks</h2>
+<h2 id="Thematic-breaks">Thematic breaks</h2>
 <p>A line consisting of 0-3 spaces of indentation, followed by a sequence
 of three or more matching <code>-</code>, <code>_</code>, or <code>*</code> characters, each followed
 optionally by any number of spaces or tabs, forms a
@@ -578,7 +578,7 @@ interpretations of a line, the thematic break takes precedence:</p>
 &lt;/li&gt;
 &lt;/ul&gt;
 </code></pre>
-<h2>ATX headings</h2>
+<h2 id="ATX-headings">ATX headings</h2>
 <p>An <a href="@">ATX heading</a>
 consists of a string of characters, parsed as inline content, between an
 opening sequence of 1--6 unescaped <code>#</code> characters and an optional
@@ -728,7 +728,7 @@ Bar foo
 &lt;h1&gt;&lt;/h1&gt;
 &lt;h3&gt;&lt;/h3&gt;
 </code></pre>
-<h2>Setext headings</h2>
+<h2 id="Setext-headings">Setext headings</h2>
 <p>A <a href="@">setext heading</a> consists of one or more
 lines of text, each containing at least one [non-whitespace
 character], with no more than 3 spaces indentation, followed by
@@ -1037,7 +1037,7 @@ bar
 ---
 baz&lt;/p&gt;
 </code></pre>
-<h2>Indented code blocks</h2>
+<h2 id="Indented-code-blocks">Indented code blocks</h2>
 <p>An <a href="@">indented code block</a> is composed of one or more
 [indented chunks] separated by blank lines.
 An <a href="@">indented chunk</a> is a sequence of non-blank lines,
@@ -1186,7 +1186,7 @@ are not included in it:</p>
 &lt;pre&gt;&lt;code&gt;foo  
 &lt;/code&gt;&lt;/pre&gt;
 </code></pre>
-<h2>Fenced code blocks</h2>
+<h2 id="Fenced-code-blocks">Fenced code blocks</h2>
 <p>A <a href="@">code fence</a> is a sequence
 of at least three consecutive backtick characters (<code>`</code>) or
 tildes (<code>~</code>).  (Tildes and backticks cannot be mixed.)
@@ -1499,7 +1499,7 @@ foo
 &lt;pre&gt;&lt;code&gt;``` aaa
 &lt;/code&gt;&lt;/pre&gt;
 </code></pre>
-<h2>HTML blocks</h2>
+<h2 id="HTML-blocks">HTML blocks</h2>
 <p>An <a href="@">HTML block</a> is a group of lines that is treated
 as raw HTML (and will not be escaped in HTML output).</p>
 <p>There are seven kinds of [HTML block], which can be defined by their
@@ -2114,7 +2114,7 @@ an indented code block:</p>
 deleted.  The exception is inside <code>&lt;pre&gt;</code> tags, but as described
 [above][HTML blocks], raw HTML blocks starting with <code>&lt;pre&gt;</code>
 <em>can</em> contain blank lines.</p>
-<h2>Link reference definitions</h2>
+<h2 id="Link-reference-definitions">Link reference definitions</h2>
 <p>A <a href="@">link reference definition</a>
 consists of a [link label], indented up to three spaces, followed
 by a colon (<code>:</code>), optional [whitespace] (including up to one
@@ -2373,7 +2373,7 @@ no visible content:</p>
 <pre><code class="language-example">[foo]: /url
 .
 </code></pre>
-<h2>Paragraphs</h2>
+<h2 id="Paragraphs">Paragraphs</h2>
 <p>A sequence of non-blank lines that cannot be interpreted as other
 kinds of blocks forms a <a href="@">paragraph</a>.
 The contents of the paragraph are the result of parsing the
@@ -2450,7 +2450,7 @@ bbb
 &lt;p&gt;aaa&lt;br /&gt;
 bbb&lt;/p&gt;
 </code></pre>
-<h2>Blank lines</h2>
+<h2 id="Blank-lines">Blank lines</h2>
 <p>[Blank lines] between block-level elements are ignored,
 except for the role they play in determining whether a [list]
 is [tight] or [loose].</p>
@@ -2467,7 +2467,7 @@ aaa
 &lt;p&gt;aaa&lt;/p&gt;
 &lt;h1&gt;aaa&lt;/h1&gt;
 </code></pre>
-<h1>Container blocks</h1>
+<h1 id="Container-blocks">Container blocks</h1>
 <p>A <a href="#container-blocks">container block</a> is a block that has other
 blocks as its contents.  There are two basic kinds of container blocks:
 [block quotes] and [list items].
@@ -2484,7 +2484,7 @@ how these can be <em>generated</em> from their contents. This should suffice
 to define the syntax, although it does not give a recipe for <em>parsing</em>
 these constructions.  (A recipe is provided below in the section entitled
 <a href="#appendix-a-parsing-strategy">A parsing strategy</a>.)</p>
-<h2>Block quotes</h2>
+<h2 id="Block-quotes">Block quotes</h2>
 <p>A <a href="@">block quote marker</a>
 consists of 0-3 spaces of initial indent, plus (a) the character <code>&gt;</code> together
 with a following space, or (b) a single character <code>&gt;</code> not followed by a space.</p>
@@ -2805,7 +2805,7 @@ the <code>&gt;</code>:</p>
 &lt;p&gt;not code&lt;/p&gt;
 &lt;/blockquote&gt;
 </code></pre>
-<h2>List items</h2>
+<h2 id="List-items">List items</h2>
 <p>A <a href="@">list marker</a> is a
 [bullet list marker] or an [ordered list marker].</p>
 <p>A <a href="@">bullet list marker</a>
@@ -3556,7 +3556,7 @@ in the list item.</p>
 baz&lt;/li&gt;
 &lt;/ul&gt;
 </code></pre>
-<h3>Motivation</h3>
+<h3 id="Motivation">Motivation</h3>
 <p>John Gruber's Markdown spec says the following about list items:</p>
 <ol>
 <li>
@@ -3713,7 +3713,7 @@ that in such cases, we require one space indentation from the list marker
 (and then the normal four spaces for the indented code).  This will match the
 four-space rule in cases where the list marker plus its initial indentation
 takes four spaces (a common case), but diverge in other cases.</p>
-<h2>Lists</h2>
+<h2 id="Lists">Lists</h2>
 <p>A <a href="@">list</a> is a sequence of one or more
 list items [of the same type].  The list items
 may be separated by any number of blank lines.</p>
@@ -4232,7 +4232,7 @@ two block elements in the list item:</p>
 &lt;/li&gt;
 &lt;/ul&gt;
 </code></pre>
-<h1>Inlines</h1>
+<h1 id="Inlines">Inlines</h1>
 <p>Inlines are parsed sequentially from the beginning of the character
 stream to the end (left to right, in left-to-right languages).
 Thus, for example, in</p>
@@ -4242,7 +4242,7 @@ Thus, for example, in</p>
 </code></pre>
 <p><code>hi</code> is parsed as code, leaving the backtick at the end as a literal
 backtick.</p>
-<h2>Backslash escapes</h2>
+<h2 id="Backslash-escapes">Backslash escapes</h2>
 <p>Any ASCII punctuation character may be backslash-escaped:</p>
 <pre><code class="language-example">\!\&quot;\#\$\%\&amp;\'\(\)\*\+\,\-\.\/\:\;\&lt;\=\&gt;\?\@\[\\\]\^\_\`\{\|\}\~
 .
@@ -4333,7 +4333,7 @@ foo
 &lt;pre&gt;&lt;code class=&quot;language-foo+bar&quot;&gt;foo
 &lt;/code&gt;&lt;/pre&gt;
 </code></pre>
-<h2>Entity and numeric character references</h2>
+<h2 id="Entity-and-numeric-character-references">Entity and numeric character references</h2>
 <p>Valid HTML entity references and numeric character references
 can be used in place of the corresponding Unicode character,
 with the following exceptions:</p>
@@ -4478,7 +4478,7 @@ bar&lt;/p&gt;
 .
 &lt;p&gt;[a](url &amp;quot;tit&amp;quot;)&lt;/p&gt;
 </code></pre>
-<h2>Code spans</h2>
+<h2 id="Code-spans">Code spans</h2>
 <p>A <a href="@">backtick string</a>
 is a string of one or more backtick characters (<code>`</code>) that is neither
 preceded nor followed by a backtick.</p>
@@ -4630,7 +4630,7 @@ closing backtick strings to be equal in length:</p>
 .
 &lt;p&gt;`foo&lt;code&gt;bar&lt;/code&gt;&lt;/p&gt;
 </code></pre>
-<h2>Emphasis and strong emphasis</h2>
+<h2 id="Emphasis-and-strong-emphasis">Emphasis and strong emphasis</h2>
 <p>John Gruber's original <a href="http://daringfireball.net/projects/markdown/syntax#em">Markdown syntax
 description</a> says:</p>
 <blockquote>
@@ -5503,7 +5503,7 @@ delimiters:</p>
 .
 &lt;p&gt;__a&lt;a href=&quot;http://foo.bar/?q=__&quot;&gt;http://foo.bar/?q=__&lt;/a&gt;&lt;/p&gt;
 </code></pre>
-<h2>Links</h2>
+<h2 id="Links">Links</h2>
 <p>A link contains [link text] (the visible text), a [link destination]
 (the URI that is the link destination), and optionally a [link title].
 There are two basic kinds of links in Markdown.  In [inline links] the
@@ -6236,7 +6236,7 @@ is followed by a link label (even though <code>[bar]</code> is not defined):</p>
 .
 &lt;p&gt;[foo]&lt;a href=&quot;/url1&quot;&gt;bar&lt;/a&gt;&lt;/p&gt;
 </code></pre>
-<h2>Images</h2>
+<h2 id="Images">Images</h2>
 <p>Syntax for images is like the syntax for links, with one
 difference. Instead of [link text], we have an
 <a href="@">image description</a>.  The rules for this are the
@@ -6384,7 +6384,7 @@ backslash-escape the opening <code>[</code>:</p>
 .
 &lt;p&gt;!&lt;a href=&quot;/url&quot; title=&quot;title&quot;&gt;foo&lt;/a&gt;&lt;/p&gt;
 </code></pre>
-<h2>Autolinks</h2>
+<h2 id="Autolinks">Autolinks</h2>
 <p><a href="@">Autolink</a>s are absolute URIs and email addresses inside
 <code>&lt;</code> and <code>&gt;</code>. They are parsed as links, with the URL or email address
 as the link label.</p>
@@ -6499,7 +6499,7 @@ spec</a>:</p>
 .
 &lt;p&gt;foo@bar.example.com&lt;/p&gt;
 </code></pre>
-<h2>Raw HTML</h2>
+<h2 id="Raw-HTML">Raw HTML</h2>
 <p>Text between <code>&lt;</code> and <code>&gt;</code> that looks like an HTML tag is parsed as a
 raw HTML tag and will be rendered in HTML without escaping.
 Tag and attribute names are not limited to current HTML tags,
@@ -6673,7 +6673,7 @@ attributes:</p>
 .
 &lt;p&gt;&amp;lt;a href=&amp;quot;&amp;quot;&amp;quot;&amp;gt;&lt;/p&gt;
 </code></pre>
-<h2>Hard line breaks</h2>
+<h2 id="Hard-line-breaks">Hard line breaks</h2>
 <p>A line break (not in a code span or HTML tag) that is preceded
 by two or more spaces and does not occur at the end of a block
 is parsed as a <a href="@">hard line break</a> (rendered
@@ -6769,7 +6769,7 @@ other block element:</p>
 .
 &lt;h3&gt;foo&lt;/h3&gt;
 </code></pre>
-<h2>Soft line breaks</h2>
+<h2 id="Soft-line-breaks">Soft line breaks</h2>
 <p>A regular line break (not in a code span or HTML tag) that is not
 preceded by two or more spaces or a backslash is parsed as a
 <a href="@">softbreak</a>.  (A softbreak may be rendered in HTML either as a
@@ -6793,7 +6793,7 @@ baz&lt;/p&gt;
 line break or as a space.</p>
 <p>A renderer may also provide an option to render soft line breaks
 as hard line breaks.</p>
-<h2>Textual content</h2>
+<h2 id="Textual-content">Textual content</h2>
 <p>Any characters not given an interpretation by the above rules will
 be parsed as plain textual content.</p>
 <pre><code class="language-example">hello $.;'there
@@ -6810,10 +6810,10 @@ be parsed as plain textual content.</p>
 &lt;p&gt;Multiple     spaces&lt;/p&gt;
 </code></pre>
 <!-- END TESTS -->
-<h1>Appendix: A parsing strategy</h1>
+<h1 id="Appendix--A-parsing-strategy">Appendix: A parsing strategy</h1>
 <p>In this appendix we describe some features of the parsing strategy
 used in the CommonMark reference implementations.</p>
-<h2>Overview</h2>
+<h2 id="Overview">Overview</h2>
 <p>Parsing has two phases:</p>
 <ol>
 <li>
@@ -6850,7 +6850,7 @@ marked by arrows:</p>
         -&gt; paragraph
              &quot;aliquando id&quot;
 </code></pre>
-<h2>Phase 1: block structure</h2>
+<h2 id="Phase-1--block-structure">Phase 1: block structure</h2>
 <p>Each line that is processed has an effect on this tree.  The line is
 analyzed and, depending on its contents, the document may be altered
 in one or more of the following ways:</p>
@@ -6962,7 +6962,7 @@ We thus obtain the final tree:</p>
         -&gt; paragraph
              &quot;aliquando id&quot;
 </code></pre>
-<h2>Phase 2: inline structure</h2>
+<h2 id="Phase-2--inline-structure">Phase 2: inline structure</h2>
 <p>Once all of the input has been parsed, all open blocks are closed.</p>
 <p>We then &quot;walk the tree,&quot; visiting every node, and parse raw
 string contents of paragraphs and headings as inlines.  At this
@@ -6987,7 +6987,7 @@ resolve reference links as we go.</p>
 <p>Notice how the [line ending] in the first paragraph has
 been parsed as a <code>softbreak</code>, and the asterisks in the first list item
 have become an <code>emph</code>.</p>
-<h3>An algorithm for parsing nested emphasis and links</h3>
+<h3 id="An-algorithm-for-parsing-nested-emphasis-and-links">An algorithm for parsing nested emphasis and links</h3>
 <p>By far the trickiest part of inline parsing is handling emphasis,
 strong emphasis, links, and images.  This is done using the following
 algorithm.</p>
@@ -7012,7 +7012,7 @@ and follow the delimiters).</li>
 procedure (see below).</p>
 <p>When we hit the end of the input, we call the <em>process emphasis</em>
 procedure (see below), with <code>stack_bottom</code> = NULL.</p>
-<h4><em>look for link or image</em></h4>
+<h4 id="look-for-link-or-image"><em>look for link or image</em></h4>
 <p>Starting at the top of the delimiter stack, we look backwards
 through the stack for an opening <code>[</code> or <code>![</code> delimiter.</p>
 <ul>
@@ -7056,7 +7056,7 @@ will prevent us from getting links within links.)</p>
 </ul>
 </li>
 </ul>
-<h4><em>process emphasis</em></h4>
+<h4 id="process-emphasis"><em>process emphasis</em></h4>
 <p>Parameter <code>stack_bottom</code> sets a lower bound to how far we
 descend in the [delimiter stack].  If it is NULL, we can
 go all the way to the bottom.  Otherwise, we stop before

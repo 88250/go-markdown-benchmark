@@ -1,5 +1,5 @@
-github.com/88250/lute v1.1.5 h1:GkC0bjlTpcYaitpbmoi/IyERhjhs6ta7lLWZw5qnQ4k=
-github.com/88250/lute v1.1.5/go.mod h1:sAo/kdyurrs5Ol96TgJLjt+seV64QZLOM1dzs85eLoo=
+github.com/88250/lute v1.2.4 h1:Fe3ztZqigKSmyllUvPpCZc0XWgb9e5FJXbxZa5qgvls=
+github.com/88250/lute v1.2.4/go.mod h1:sAo/kdyurrs5Ol96TgJLjt+seV64QZLOM1dzs85eLoo=
 github.com/alecthomas/assert v0.0.0-20170929043011-405dbfeb8e38 h1:smF2tmSOzy2Mm+0dGI2AIUHY+w0BUc+4tn40djz7+6U=
 github.com/alecthomas/assert v0.0.0-20170929043011-405dbfeb8e38/go.mod h1:r7bzyVFMNntcxPZXK3/+KdruV1H5KSlyVY0gc+NgInI=
 github.com/alecthomas/chroma v0.7.1 h1:G1i02OhUbRi2nJxcNkwJaY/J1gHXj9tt72qN6ZouLFQ=
@@ -56,12 +56,14 @@ github.com/stretchr/testify v1.4.0 h1:2E4SXV/wtOkTonXsotYi4li6zVWxYlZuYNCXe9XRJy
 github.com/stretchr/testify v1.4.0/go.mod h1:j7eGeouHqKxXV5pUuKE4zz7dFj8WfuZ+81PSLYec5m4=
 github.com/stretchr/testify v1.5.0 h1:DMOzIV76tmoDNE9pX6RSN0aDtCYeCg5VueieJaAo1uw=
 github.com/stretchr/testify v1.5.0/go.mod h1:5W2xD1RspED5o8YsWQXVCued0rvSQ+mT+I5cxcmMvtA=
-github.com/yuin/goldmark v1.1.23 h1:eTodJ8hwEUvwXhb9qxQNuL/q1d+xMQClrXR4mdvV7gs=
-github.com/yuin/goldmark v1.1.23/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
+github.com/yuin/goldmark v1.1.25 h1:isv+Q6HQAmmL2Ofcmg8QauBmDPlUUnSoNhEcC940Rds=
+github.com/yuin/goldmark v1.1.25/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
 gitlab.com/golang-commonmark/html v0.0.0-20191124015941-a22733972181 h1:K+bMSIx9A7mLES1rtG+qKduLIXq40DAzYHtb0XuCukA=
 gitlab.com/golang-commonmark/html v0.0.0-20191124015941-a22733972181/go.mod h1:dzYhVIwWCtzPAa4QP98wfB9+mzt33MSmM8wsKiMi2ow=
 gitlab.com/golang-commonmark/linkify v0.0.0-20191026162114-a0c2df6c8f82 h1:oYrL81N608MLZhma3ruL8qTM4xcpYECGut8KSxRY59g=
 gitlab.com/golang-commonmark/linkify v0.0.0-20191026162114-a0c2df6c8f82/go.mod h1:Gn+LZmCrhPECMD3SOKlE+BOHwhOYD9j7WT9NUtkCrC8=
+gitlab.com/golang-commonmark/linkify v0.0.0-20200225224916-64bca66f6ad3 h1:1Coh5BsUBlXoEJmIEaNzVAWrtg9k7/eJzailMQr1grw=
+gitlab.com/golang-commonmark/linkify v0.0.0-20200225224916-64bca66f6ad3/go.mod h1:Gn+LZmCrhPECMD3SOKlE+BOHwhOYD9j7WT9NUtkCrC8=
 gitlab.com/golang-commonmark/markdown v0.0.0-20191127184510-91b5b3c99c19 h1:HsZm6XaTpEgZiZqcXZkUbG6BNtSZE3XyCTfo52YBoDY=
 gitlab.com/golang-commonmark/markdown v0.0.0-20191127184510-91b5b3c99c19/go.mod h1:CRIzp0wh6PvKEAeEOtp9wEpNKJJ1VFTNfHO4+ToRgVA=
 gitlab.com/golang-commonmark/mdurl v0.0.0-20191124015652-932350d1cb84 h1:qqjvoVXdWIcZCLPMlzgA7P9FZWdPGPvP/l3ef8GzV6o=
