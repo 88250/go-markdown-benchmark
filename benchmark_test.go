@@ -41,10 +41,12 @@ func BenchmarkLute(b *testing.B) {
 	luteEngine.CodeSyntaxHighlight = false
 	luteEngine.Footnotes = false
 	luteEngine.ToC = false
+	luteEngine.HeadingID = false
 	luteEngine.AutoSpace = false
 	luteEngine.FixTermTypo = false
 	luteEngine.ChinesePunct = false
 	luteEngine.Emoji = false
+	luteEngine.HeadingAnchor = false
 	output := luteEngine.Markdown("spec text", buf)
 	if err := ioutil.WriteFile(spec+".html", output, 0644); nil != err {
 		b.Fatalf("write spec html failed: %s", err)
