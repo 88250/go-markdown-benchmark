@@ -3,7 +3,7 @@ module github.com/88250/go-markdown-benchmark
 go 1.12
 
 require (
-	github.com/88250/lute v1.2.4
+	github.com/88250/lute v1.2.6
 	github.com/gomarkdown/markdown v0.0.0-20200316172748-fd1f3374857d
 	github.com/yuin/goldmark v1.1.26
 	gitlab.com/golang-commonmark/linkify v0.0.0-20200225224916-64bca66f6ad3 // indirect
